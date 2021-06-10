@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adding popup</title>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <script src="js/leaflet.js"></script>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: "whitesmoke";
+                font-family: "Noto Sans", sans-serif;
+                color: #3d3d3d;
+            }
+            #title {
+                position: fixed;
+                margin-top: 0;
+                top: 10px;
+                left: 55px;
+                font-size: 2em;
+                font-family: "Lora", serif;
+                letter-spacing: .04em;
+                padding: 10px 15px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 1px solid yellowgreen;
+                border-radius: 3px;
+                z-index: 800;
+            }
+            #description {
+                position: fixed;
+                bottom: 20px;
+                left: 10px;
+                width: 280px;
+                padding: 0px 15px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 1px solid yellowgreen;
+                border-radius: 3px;
+                z-index: 800;
+            }
+            #map {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+            }
+            .legend {
+                padding: 6px 8px;
+                background-color: rgba(255, 255, 255, 0.8);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+            }
+            .legend i {
+                width: 18px;
+                height: 18px;
+                float: left;
+                margin-right: 8px;
+                opacity: 0.77;
+            }
+            div.legend.leaflet-control br {
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title">Ruta de la tapa Castelló</h1>
+        <div id="map"></div>
+        <div id='description'>
+            <h2>Ruta Gastronómica</h2>
+            <p>Este recorrido nos muestra los locales típicos de la principal ruta gastronómica de Castelló, donde puedes degustar los mejores productos de la provincia.</p>
+            <p><b>Abierto todos los dias</b></p>
+            <p>Cada local cuenta con su propio horario</p>
+            <p><b>Para más información contactar con el local</b></p>
+            <img src='images/logoCS.png'/>
+        </div>
+        <script>
+
+// coordenadas del mapa para saber de donde se enfoca
+
+ let map = L.map("map", {center: [39.984788, -0.037608], zoom: 19});
+ L.tileLayer(
+ "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+ {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
+).addTo(map);
+
+// Add point
+
+var p = L.icon({
+        iconUrl: 'https://img.icons8.com/dusk/40/000000/circle.png',
+        iconSize: [30, 30],
+    });
+
+    var p1 = L.icon({
+        iconUrl: 'https://img.icons8.com/dusk/40/000000/circle.png',
+        iconSize: [30, 30],
+    });
+
+    var p2 = L.icon({
+        iconUrl: 'https://img.icons8.com/dusk/50/000000/circle.png',
+        iconSize: [30, 30],
+    });
+
+    var p3 = L.icon({
+        iconUrl: 'https://img.icons8.com/dusk/50/000000/circle.png',
+        iconSize: [30, 30],
+    });
+
+    var p4 = L.icon({
+        iconUrl: 'https://img.icons8.com/dusk/50/000000/circle.png',
+        iconSize: [30, 30],
+    });
+    var p5 = L.icon({
+        iconUrl: 'https://img.icons8.com/dusk/50/000000/circle.png',
+        iconSize: [30, 30],
+    });
+
+
+// Añadir los puntos de los 5 estadios de futbol de la Comunidad Valenciana
+
+ let pnt = L.marker ([39.985111, -0.037661],{icon:p}).addTo(map)
+ pnt.bindPopup("<h1>Las Tascas</h1><b> Teléfono: </b>964224070.<b> <img src='images\LaTasca.jpg'/>");
+ 
+let pnt1 = L.marker ( [39.98518657295266, -0.0380301693304767],{icon:p1}).addTo(map)
+ pnt1.bindPopup("<h1>Cerveceria la Taska </h1><b> Teléfono: </b>964224079.<b> <img src='images\Cerveceria.jpg'/>");
+
+
+ let pnt2 = L.marker ( [39.985099532136736, -0.03688520134500525],{icon:p2}).addTo(map)
+ pnt2.bindPopup("<h1>Bodega La Fuente Castellón </h1><b> Teléfono: </b>964224065.<b><img src='images\Bodega.jpg'/>");
+
+
+ let pnt4 = L.marker ( [39.9852826997645, -0.03668100267584979],{icon:p3}).addTo(map)
+ pnt4.bindPopup("<h1>Taska Barsita</h1><b> Teléfono: </b>964224083.<b><img src='images\Baskita.jpg'/>");
+ 
+ 
+ let pnt5 = L.marker ( [39.98490197219396, -0.03777994436763897],{icon:p4}).addTo(map)
+ pnt5.bindPopup( "<h1>Tasca Ernesto</h1><b> Teléfono: </b>964224060.<b><img src='images\Ernesto.jpg'/>");
+
+ let pnt6 = L.marker ( [39.98514653407335, -0.0362484030299707],{icon:p5}).addTo(map)
+ pnt6.bindPopup("<h1>Tasca Pepe </h1><b> Teléfono: </b>964224033.<b><img src='images\Pepe.jpg'/>");
+ 
+ 
+
+
+let line = L.polyline([[39.98509747699357, -0.03762683214034215], [39.985183792805536, -0.03804928005638063]], {color: "green", weight: 5}).addTo(map);
+           L.polyline([[39.985183792805536, -0.03804928005638063], [39.98475426781438, -0.038196801549806154]], {color: "green", weight: 5}).addTo(map);
+           L.polyline([[39.98475426781438, -0.038196801549806154], [39.98452409063126, -0.03736531676868045]], {color: "green", weight: 5}).addTo(map);
+           L.polyline([[39.98452409063126, -0.03736531676868045], [39.9853050457857, -0.036769866367591886]], {color: "green", weight: 5}).addTo(map);
+           L.polyline([[39.9853050457857, -0.036769866367591886], [39.98510364241577, -0.036099314116392896]], {color: "green", weight: 5}).addTo(map);
+           L.polyline([[39.98468001611774, -0.03783627075603781], [39.984873200150695, -0.03775848669586798]], {color: "green", weight: 5}).addTo(map);
+
+
+// posición de la leyenda dentro de el mapa
+let legend = L.control({position: "topleft"});
+
+
+legend.onAdd = function() {
+
+
+
+    
+    return div;
+
+
+};
+
+// Añadir leyenda
+legend.addTo(map);
+
+
+    </script>
+</body>
+</html>
+
+
+    
+    
+   
